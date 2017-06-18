@@ -3,6 +3,7 @@ package com.github.unchama.gui;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
+import com.github.unchama.gui.achievement.AchievementMenuManager;
 import com.github.unchama.gui.admin.AdminTypeMenuManager;
 import com.github.unchama.gui.admin.customhead.AdminCustomHeadGiveMenuManager;
 import com.github.unchama.gui.admin.customhead.AdminCustomHeadMainMenuManager;
@@ -117,6 +118,7 @@ public final class GuiMenu {
         WEEKMINEBLOCKRANKINGMENU(WeekMineBlockRankingMenuManager.class),
         MONTHMINEBLOCKRANKINGMENU(MonthMineBlockRankingMenuManager.class),
         YEARMINEBLOCKRANKINGMENU(YearMineBlockRankingMenuManager.class),
+        ACHIEVEMENTMENU(AchievementMenuManager.class),
 		;
 
 		// 使用するManagerClass

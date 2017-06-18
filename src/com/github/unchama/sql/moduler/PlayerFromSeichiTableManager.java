@@ -21,7 +21,7 @@ public abstract class PlayerFromSeichiTableManager extends PlayerTableManager {
 
 	/**
 	 * テーブル作成時に追加するカラムをコマンドとして返り値としてください． ex) command =
-	 * "add column if not exists name varchar(30) default null,"
+	 * "add column if not exists achievementdata varchar(30) default null,"
 	 * "add"で始まり，","で終わるようにしてください．
 	 *
 	 * @return command

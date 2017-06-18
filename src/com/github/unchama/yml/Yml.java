@@ -19,7 +19,8 @@ public final class Yml {
 		DEBUG(DebugManager.class), //
 		MOBHEAD(CustomHeadManager.class), //
 		HUNTINGPOINT(HuntingPointDataManager.class), //
-		DIMENSIONALINVENTORY(DimensionalInventoryYmlManager.class),//
+		DIMENSIONALINVENTORY(DimensionalInventoryYmlManager.class),
+		ACHIEVEMENTLIST(AchievementListManager.class),//
 		;
 		// 使用するManagerClass
 		private Class<? extends YmlManager> managerClass;

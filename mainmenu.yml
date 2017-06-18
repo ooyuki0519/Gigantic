@@ -10,7 +10,7 @@
 # 開けた時のサウンドを選択してください．
 # サウンド一覧はこちらから(https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html)
 
-sound: 
+sound:
   name: 'BLOCK_FENCE_GATE_OPEN'
   volume: 1
   pitch: 0.1
@@ -146,6 +146,19 @@ name: '&5&lメインメニュー'
       - '&r&4&nクリックするとワープします'
       - '&r&8command->[/spawn]'
   command: 'spawn'
+9:
+  itemstack:
+    ==: org.bukkit.inventory.ItemStack
+    type: END_CRYSTAL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: '&e&n&l実績・二つ名システム'
+      lore:
+      - '&r&7様々な実績に挑んで、'
+      - '&r&7色々な二つ名を手に入れよう！'
+      - '&r&4&l&nクリックして開く'
+  openmenu: 'achievementmenu'
 12:
   itemstack:
     ==: org.bukkit.inventory.ItemStack
