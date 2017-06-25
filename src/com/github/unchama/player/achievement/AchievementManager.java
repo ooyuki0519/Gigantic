@@ -5,7 +5,6 @@ import java.util.BitSet;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import com.github.unchama.gigantic.Gigantic;
 import com.github.unchama.player.GiganticPlayer;
 import com.github.unchama.player.moduler.DataManager;
 import com.github.unchama.player.moduler.UsingSql;
@@ -13,7 +12,6 @@ import com.github.unchama.player.seichilevel.SeichiLevelManager;
 import com.github.unchama.player.time.PlayerTimeManager;
 import com.github.unchama.sql.player.AchievementTableManager;
 import com.github.unchama.util.Util;
-import com.github.unchama.yml.AchievementListManager;
 
 public class AchievementManager extends DataManager implements UsingSql{
 	
@@ -59,11 +57,14 @@ public class AchievementManager extends DataManager implements UsingSql{
 		if(displayTitleNoA == 0 && displayTitleNoB == 0 && displayTitleNoC == 0){
 			displayname = "[Lv" + seichilevel + "]" + displayname + ChatColor.WHITE;
 		}else{
+			/**
 			String displayTitleA = Gigantic.yml.getManager(AchievementListManager.class).getTitleA(displayTitleNoA);
 			String displayTitleB = Gigantic.yml.getManager(AchievementListManager.class).getTitleB(displayTitleNoB);
 			String displayTitleC = Gigantic.yml.getManager(AchievementListManager.class).getTitleC(displayTitleNoC);
 			displayname = "[" + displayTitleA + displayTitleB + displayTitleC + "]" + displayname + ChatColor.WHITE;
+			**/
 		}
+		
 		
 		//放置中なら色を変更
 		int idle = gp.getManager(PlayerTimeManager.class).getTotalIdletick();

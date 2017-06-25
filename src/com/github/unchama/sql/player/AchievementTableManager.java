@@ -3,6 +3,7 @@ package com.github.unchama.sql.player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.BitSet;
 
 import com.github.unchama.player.GiganticPlayer;
 import com.github.unchama.player.achievement.AchievementManager;
@@ -20,7 +21,7 @@ public class AchievementTableManager extends PlayerFromSeichiTableManager{
 	protected String addColumnCommand() {
 		//コマンド作成
 		String command = "";
-		command += "add column if not exists displaytitleNoA int default 0,"
+		command  = "add column if not exists displaytitleNoA int default 0,"
 				 + "add column if not exists displaytitleNoB int default 0,"
 				 + "add column if not exists displaytitleNoC int default 0,"
 				 + "add column if not exists TitleFlags text default null,"
@@ -40,7 +41,7 @@ public class AchievementTableManager extends PlayerFromSeichiTableManager{
         String FlagString = String.join(",", TitleNums);
 		//コマンド作成
 		String command = "";
-		command += "displaytitleNoA = '" + a.displayTitleNoA + "',"
+		command  = "displaytitleNoA = '" + a.displayTitleNoA + "',"
 				 + "displaytitleNoB = '" + a.displayTitleNoB + "'," 
 				 + "displaytitleNoC = '" + a.displayTitleNoC + "',"
 				 + "achvPointMAX = '" + a.achvPointMAX + "',"
@@ -52,13 +53,20 @@ public class AchievementTableManager extends PlayerFromSeichiTableManager{
 	}
  
 	@Override
-	protected void takeoverPlayer(GiganticPlayer gp, PlayerDataTableManager tm) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+	protected void takeoverPlayer(GiganticPlayer gp, PlayerDataTableManager tm){
+		AchievementManager am = gp.getManager(AchievementManager.class);
+		am.displayTitleNoA = tm.getDisplayTitleNoA(gp);
+		am.displayTitleNoB = tm.getDisplayTitleNoB(gp);
+		am.displayTitleNoC = tm.getDisplayTitleNoC(gp);
+		am.achvPointMAX = tm.getAchvPointMAX(gp);
+		am.achvChangenum = tm.getAchvChangenum(gp);
 	}
 
 	@Override
 	protected void firstjoinPlayer(GiganticPlayer gp) {
+		if(gp == null){
+			plugin.getServer().getLogger().info("gpがnullです");
+		}
 		AchievementManager a = gp.getManager(AchievementManager.class);
 		//お初のデータ初期化
 		a.displayTitleNoA = 0;
@@ -69,7 +77,7 @@ public class AchievementTableManager extends PlayerFromSeichiTableManager{
 		a.achvPointMAX = 0;
 		a.achvPointUSE = 0;
 		a.giveachvNo = 0;
-		a.TitleFlags = null;
+		a.TitleFlags = new BitSet(10000);
 		a.samepageflag = false;
 		a.p_vote_forT = 0;
 	}
@@ -84,6 +92,11 @@ public class AchievementTableManager extends PlayerFromSeichiTableManager{
 		a.achvPointMAX = rs.getInt("achvPointMAX");
 		a.achvPointUSE = rs.getInt("achvPointUSE");
 		a.giveachvNo = rs.getInt("giveachvNo");
+		//bitsetに戻す
+		String[] Titlenums = rs.getString("TitleFlags").toString().split(",");
+		long[] Titlearray = Arrays.stream(Titlenums).mapToLong(x -> Long.parseUnsignedLong(x, 16)).toArray();
+		//bitsetデータ取得
+		a.TitleFlags = BitSet.valueOf(Titlearray);
 	}
 	
 }

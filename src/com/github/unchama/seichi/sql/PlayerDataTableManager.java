@@ -300,5 +300,117 @@ public class PlayerDataTableManager extends SeichiTableManager {
 		}
 		return ans;
 	}
+	
+	//実績関連
+	public int getDisplayTitleNoA(GiganticPlayer gp){
+		String command = "";
+		int ans = 0;
+		final String struuid = gp.uuid.toString().toLowerCase();
+		
+		command = "select displayTitle1No from " + db + "." + table 
+				+ "where uuid = '" + struuid + "'";
+		this.checkStatement();
+		try{
+			rs = stmt.executeQuery(command);
+			while(rs.next()){
+				ans = rs.getInt("displayTitle1No");
+			}
+			rs.close();
+		}catch(SQLException e){
+			plugin.getLogger().warning(
+					"Failed to load displayTitle1No player:" + gp.name);
+			e.printStackTrace();
+		}
+		return ans;
+	}
+	
+	public int getDisplayTitleNoB(GiganticPlayer gp){
+		String command = "";
+		int ans = 0;
+		final String struuid = gp.uuid.toString().toLowerCase();
+		
+		command = "select displayTitle2No from " + db + "." + table 
+				+ "where uuid = '" + struuid + "'";
+		this.checkStatement();
+		try{
+			rs = stmt.executeQuery(command);
+			while(rs.next()){
+				ans = rs.getInt("displayTitle2No");
+			}
+			rs.close();
+		}catch(SQLException e){
+			plugin.getLogger().warning(
+					"Failed to load displayTitle2No player:" + gp.name);
+			e.printStackTrace();
+		}
+		return ans;
+	}
+	
+	public int getDisplayTitleNoC(GiganticPlayer gp){
+		String command = "";
+		int ans = 0;
+		final String struuid = gp.uuid.toString().toLowerCase();
+		
+		command = "select displayTitle3No from " + db + "." + table 
+				+ "where uuid = '" + struuid + "'";
+		this.checkStatement();
+		try{
+			rs = stmt.executeQuery(command);
+			while(rs.next()){
+				ans = rs.getInt("displayTitle3No");
+			}
+			rs.close();
+		}catch(SQLException e){
+			plugin.getLogger().warning(
+					"Failed to load displayTitle3No player:" + gp.name);
+			e.printStackTrace();
+		}
+		return ans;
+	}
+		
+	public int getAchvPointMAX(GiganticPlayer gp){
+		String command = "";
+		int ans = 0;
+		final String struuid = gp.uuid.toString().toLowerCase();
+			
+		command = "select achvPointMAX from " + db + "." + table 
+				+ "where uuid = '" + struuid + "'";
+		this.checkStatement();
+		try{
+			rs = stmt.executeQuery(command);
+			while(rs.next()){
+				ans = rs.getInt("achvPointMAX");
+			}
+			rs.close();
+		}catch(SQLException e){
+			plugin.getLogger().warning(
+					"Failed to load achvPointMAX player:" + gp.name);
+			e.printStackTrace();
+			}
+		return ans;
+	}
+	
+	public int getAchvChangenum(GiganticPlayer gp){
+		String command = "";
+		int ans = 0;
+		final String struuid = gp.uuid.toString().toLowerCase();
+			
+		command = "select achvChangenum from " + db + "." + table 
+				+ "where uuid = '" + struuid + "'";
+		this.checkStatement();
+		try{
+			rs = stmt.executeQuery(command);
+			while(rs.next()){
+				ans = rs.getInt("achvChangenum");
+			}
+			rs.close();
+		}catch(SQLException e){
+			plugin.getLogger().warning(
+					"Failed to load achvChangenum player:" + gp.name);
+			e.printStackTrace();
+			}
+		return ans;
+	}
+	
 	// 何かデータがほしいときはメソッドを作成しコマンドを送信する．
 }
